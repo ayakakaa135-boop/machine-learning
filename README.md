@@ -1,21 +1,28 @@
+# 🚀 My Machine Learning & AI Portfolio
+Welcome to my collection of End-to-End Machine Learning projects. This repository showcases my ability to solve real-world problems using Computer Vision and Predictive Analytics.
 
-# 🏠 California House Price Predictor (XGBoost)
+---
 
-This project uses Machine Learning to predict median house values in California districts based on the 1990 census data.
+## 📂 Current Projects
 
-## 📊 Project Overview
-- **Objective:** Predict house prices using various socio-economic features.
-- **Model:** XGBoost Regressor (Extreme Gradient Boosting).
-- **Performance:** Achieved an R-squared score of **~84%**.
-- **Key Technique:** Advanced Feature Engineering (creating `Rooms_per_HH` ratio).
+### 1. [🐾 Cat vs Dog Classification](./Cat%20vs%20Dog%20Classification%20project)
+* **Goal:** Classify images of cats and dogs using Deep Learning.
+* **Model:** Convolutional Neural Networks (CNN) with 99.9% accuracy.
+* **Tools:** TensorFlow, Keras, Streamlit.
 
-## 🛠️ Tech Stack
-- **Data Analysis:** Pandas, Numpy.
-- **Visualization:** Matplotlib, Seaborn.
-- **Machine Learning:** Scikit-Learn, XGBoost.
-- **Deployment:** Streamlit.
+### 2. [🏠 California House Price Predictor](./California%20Housing%20Dataset)
+* **Goal:** Estimate house prices based on regional features.
+* **Model:** XGBoost Regressor with 84% accuracy.
+* **Tools:** Scikit-Learn, XGBoost, Pandas, Streamlit.
 
-## 🚀 How to Run
-1. Navigate to this folder.
-2. Install requirements: `pip install -r requirements.txt`.
-3. Run the app: `streamlit run app_house.py`.
+---
+
+## 🛠️ Technical Skills
+- **Deep Learning:** CNN, Image Preprocessing, Keras.
+- **Classic Machine Learning:** Regression, Gradient Boosting (XGBoost), Random Forest.
+- **Data Science:** Feature Engineering, Outlier Detection, EDA.
+- **Deployment:** Building Web Apps with Streamlit.
+
+---
+**Author:** [Your Name/Username]  
+*Passionate about building AI solutions that make an impact.*
