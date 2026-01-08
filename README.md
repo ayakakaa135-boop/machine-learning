@@ -24,5 +24,5 @@ Welcome to my collection of End-to-End Machine Learning projects. This repositor
 - **Deployment:** Building Web Apps with Streamlit.
 
 ---
-**Author:** [Your Name/Username]  
+**Author:** [ayakakaa/https://github.com/ayakakaa135-boop/]  
 *Passionate about building AI solutions that make an impact.*
