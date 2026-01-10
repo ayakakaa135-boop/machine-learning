@@ -1,0 +1,7 @@
+tensorflow-cpu
+streamlit
+numpy
+pandas
+Pillow
+plotly
+scikit-learn
