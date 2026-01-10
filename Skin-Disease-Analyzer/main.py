@@ -10,7 +10,7 @@ import os
 
 @st.cache_resource
 def load_engine():
-    file_id = '1SelkuNMIQ_3Z0gwafzepSIbILRqBZ2PT'
+    file_id = st.secrets["GOOGLE_DRIVE_FILE_ID"]
     url = f'https://drive.google.com/uc?id={file_id}'
     output = 'model_from_drive.h5'
 
@@ -149,3 +149,4 @@ with tab2:
 
 st.divider()
 st.caption("© 2026 DermAI Medical Systems | For Educational Use Only")
+
