@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 import plotly.graph_objects as go
 import time
-
+import gdown
 import os
 
 @st.cache_resource
@@ -184,4 +184,5 @@ with tab2:
 st.divider()
 
 st.caption("© 2026 DermAI Medical Systems | For Educational Use Only")
+
 
