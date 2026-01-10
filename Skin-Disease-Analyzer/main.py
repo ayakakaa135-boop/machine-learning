@@ -9,17 +9,17 @@ import os
 
 @st.cache_resource
 def load_engine():
-    # 1. معرف الملف من Google Drive (استبدل هذا الكود بالكود الخاص بك)
+
     file_id = '1SelkuNMIQ_3Z0gwafzepSIbILRqBZ2PT'
     url = f'https://drive.google.com/uc?id={file_id}'
     output = 'model_from_drive.h5'
 
-    # 2. تحميل الملف إذا لم يكن موجوداً مسبقاً على السيرفر
+   
     if not os.path.exists(output):
         with st.spinner('Downloading AI Model from Cloud... Please wait (this may take a minute)'):
             gdown.download(url, output, quiet=False)
     
-    # 3. تحميل النموذج في كيرلس
+    
     try:
         return tf.keras.models.load_model(output)
     except Exception as e:
@@ -184,3 +184,4 @@ with tab2:
 st.divider()
 
 st.caption("© 2026 DermAI Medical Systems | For Educational Use Only")
+
