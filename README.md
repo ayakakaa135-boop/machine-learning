@@ -14,6 +14,12 @@ Welcome to my collection of End-to-End Machine Learning projects. This repositor
 * **Goal:** Estimate house prices based on regional features.
 * **Model:** XGBoost Regressor with 84% accuracy.
 * **Tools:** Scikit-Learn, XGBoost, Pandas, Streamlit.
+### 🔬 DermAI: Skin Lesion Diagnostic Suite
+* **Goal:** Assist in early detection of skin cancer and lesions using Hybrid Deep Learning.
+
+* **Model:** Multi-input Neural Network (MobileNetV2 + MLP) for Image & Metadata analysis.
+
+* **Tools:** TensorFlow, Keras, Streamlit, Plotly, GDown.
 
 ---
 
