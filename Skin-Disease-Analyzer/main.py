@@ -7,36 +7,35 @@ import time
 import gdown
 import os
 
+
 @st.cache_resource
 def load_engine():
-
     file_id = '1SelkuNMIQ_3Z0gwafzepSIbILRqBZ2PT'
     url = f'https://drive.google.com/uc?id={file_id}'
     output = 'model_from_drive.h5'
 
-   
     if not os.path.exists(output):
-        with st.spinner('Downloading AI Model from Cloud... Please wait (this may take a minute)'):
+        with st.spinner('Downloading AI Model from Cloud... Please wait'):
             gdown.download(url, output, quiet=False)
     
-    
     try:
+        # تحميل الملف الذي تم تنزيله من الدرايف
         return tf.keras.models.load_model(output)
     except Exception as e:
         st.error(f"Error loading model: {e}")
         return None
 
+# استدعاء الدالة (مرة واحدة فقط)
 model = load_engine()
 
-
-# 1. Advanced Page Configuration
+# --- 2. إعدادات الصفحة ---
 st.set_page_config(
     page_title="DermAI | Precision Diagnostic Suite",
     page_icon="🧬",
     layout="wide"
 )
 
-# 2. Ultra-Professional Custom CSS
+# --- 3. تصميم الـ CSS ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -58,16 +57,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-
-# 3. Core Engine & Metadata Setup
-@st.cache_resource
-def load_engine():
-    # Loading your saved model
-    return tf.keras.models.load_model('skin_disease_best_model.h5')
-
-
-model = load_engine()
-
+# --- 4. معلومات الأمراض والبيانات النصية ---
 disease_info = {
     'Actinic keratoses': "Precancerous scaly patches caused by sun damage.",
     'Basal cell carcinoma': "Slow-growing skin cancer, rarely spreads but needs treatment.",
@@ -79,22 +69,17 @@ disease_info = {
 }
 classes = list(disease_info.keys())
 
-# List of localizations exactly as used in your training
 localizations = ['back', 'lower extremity', 'trunk', 'upper extremity', 'abdomen',
                  'face', 'chest', 'foot', 'unknown', 'neck', 'scalp', 'hand',
                  'ear', 'genital', 'acral']
 
-# 4. Sidebar Branding
+# --- 5. واجهة المستخدم ---
 with st.sidebar:
     st.markdown("# 🧬 **DermAI Suite**")
     st.divider()
-    st.markdown("### **System Diagnostics**")
     st.success("● Neural Engine: ACTIVE")
-    st.info("● Class Mapping: 19-Feature Vector")
-    st.divider()
-    st.caption("This system uses a multi-input CNN + Meta architecture.")
+    st.info("● Model Source: Google Drive")
 
-# 5. Main Application Logic
 st.title("DermAI | Hybrid Diagnostic Interface")
 
 tab1, tab2 = st.tabs(["🚀 Diagnostic Terminal", "📖 Disease Library"])
@@ -117,43 +102,31 @@ with tab1:
 
     with col2:
         st.markdown("### **3. AI Processing & Report**")
-        if file:
+        if file and model is not None:
             if st.button("EXECUTE ANALYSIS"):
-                # Simulation UX
                 progress_bar = st.progress(0, "Analyzing cellular structures...")
                 for i in range(100):
                     time.sleep(0.01)
                     progress_bar.progress(i + 1)
 
-                # --- PREPROCESSING (The Secret Sauce) ---
-                # A) Image Preprocessing
                 img_resized = img.resize((128, 128))
                 img_array = np.array(img_resized) / 255.0
                 img_array = np.expand_dims(img_array, axis=0)
 
-                # B) Meta Preprocessing (Mapping the 19 columns)
-                # Structure: [Age, Sex_Male, Sex_Female, Loc1, Loc2, ... Loc15]
                 meta_input = np.zeros((1, 19))
-                meta_input[0, 0] = age / 100.0  # Normalized Age
+                meta_input[0, 0] = age / 100.0 
 
-                # Sex Mapping
-                if sex == "male":
-                    meta_input[0, 1] = 1
-                else:
-                    meta_input[0, 2] = 1
+                if sex == "male": meta_input[0, 1] = 1
+                else: meta_input[0, 2] = 1
 
-                # Location Mapping (Starting from index 3 to 18)
                 if loc in localizations:
                     loc_idx = localizations.index(loc) + 3
-                    if loc_idx < 19:
-                        meta_input[0, loc_idx] = 1
+                    if loc_idx < 19: meta_input[0, loc_idx] = 1
 
-                # C) Model Execution
                 preds = model.predict([img_array, meta_input])[0]
                 idx = np.argmax(preds)
                 confidence = preds[idx] * 100
 
-                # D) Visual Report Card
                 st.markdown(f"""
                 <div class="report-card">
                     <h4 style="margin:0; color:#666;">Clinical Finding:</h4>
@@ -164,16 +137,9 @@ with tab1:
                 </div>
                 """, unsafe_allow_html=True)
 
-                # Plotly Chart
-                fig = go.Figure(go.Bar(
-                    x=preds * 100, y=classes, orientation='h',
-                    marker=dict(color='#1e3c72')
-                ))
-                fig.update_layout(height=300, margin=dict(l=0, r=0, t=20, b=0), xaxis_title="Confidence %")
+                fig = go.Figure(go.Bar(x=preds * 100, y=classes, orientation='h', marker=dict(color='#1e3c72')))
+                fig.update_layout(height=300, margin=dict(l=0, r=0, t=20, b=0))
                 st.plotly_chart(fig, use_container_width=True)
-
-                if classes[idx] == 'Melanoma' and confidence > 50:
-                    st.error("🚨 **High Alert:** Potential malignancy detected. Biopsy is mandatory.")
 
 with tab2:
     st.header("Medical Knowledge Base")
@@ -182,7 +148,4 @@ with tab2:
             st.write(info)
 
 st.divider()
-
 st.caption("© 2026 DermAI Medical Systems | For Educational Use Only")
-
-
