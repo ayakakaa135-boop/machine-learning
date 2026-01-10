@@ -27,3 +27,4 @@ Unlike standard models that rely solely on images, this engine uses a **Function
 ## 📈 Key Achievements
 * Successfully integrated metadata to reduce false negatives in malignant cases.
 * Optimized for mobile-ready inference using the MobileNetV2 architecture.
+https://machine-learning-8qbiewxmncu4fvy3czdre6.streamlit.app/
