@@ -10,7 +10,7 @@ st.set_page_config(page_title="Fraud Detector Pro", layout="wide")
 
 
 DRIVE_URL = 'https://drive.google.com/file/d/1gy-YoMoiqleY0G3Ijif39_7X8wzf-Buh/view?usp=sharing'
-MODEL_PATH = 'best_fraud_detector_model.pkl'
+MODEL_PATH = 'main_scaler.pkl'
 
 # تحميل النموذج والمقياس والبيانات
 @st.cache_resource
@@ -96,5 +96,6 @@ st.sidebar.markdown("""
 - Features: Top 9 (Correlation Based)
 - F1-Score: 0.62
 """)
+
 
 
