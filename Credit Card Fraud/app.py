@@ -12,7 +12,6 @@ st.set_page_config(page_title="Fraud Detector Pro", layout="wide")
 def load_resources():
     model = joblib.load('best_fraud_detector_model.pkl')
     scaler = joblib.load('main_scaler.pkl')
-    # تحميل عينة من البيانات الأصلية للاختبار (تأكد من وجود الملف في نفس المجلد)
     df_sample = pd.read_csv('creditcard.csv').sample(1000)
     return model, scaler, df_sample
 
@@ -22,10 +21,9 @@ model, scaler, df_sample = load_resources()
 st.title("🛡️ Credit Card Fraud Detection System")
 st.sidebar.header("Control Panel")
 
-# ميزة تحميل عينة عشوائية
+
 if st.sidebar.button("🎲 Load Random Transaction"):
     random_row = df_sample.sample(1)
-    # تخزين القيم في session_state لتظهر في الخانات
     st.session_state.v17 = random_row['V17'].values[0]
     st.session_state.v14 = random_row['V14'].values[0]
     st.session_state.v12 = random_row['V12'].values[0]
@@ -89,4 +87,5 @@ st.sidebar.markdown("""
 - Algorithm: Isolation Forest
 - Features: Top 9 (Correlation Based)
 - F1-Score: 0.62
+
 """)
