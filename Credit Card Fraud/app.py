@@ -25,7 +25,7 @@ def load_resources():
     
     # تحميل عينة من البيانات
     try:
-        df_sample = pd.read_csv('creditcard.csv').sample(1000)
+        df_sample = pd.read_csv('creditcard_sample.csv').sample(1000)
     except FileNotFoundError:
         st.error("ملف creditcard.csv غير موجود. يرجى التأكد من رفعه لتشغيل ميزة العينة العشوائية.")
         df_sample = pd.DataFrame()
@@ -96,3 +96,4 @@ st.sidebar.markdown("""
 - Features: Top 9 (Correlation Based)
 - F1-Score: 0.62
 """)
+
